@@ -1,7 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Form = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  // Handle input change
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = (e, type) => {
+    e.preventDefault(); // Prevent default form submission behavior
+  
+    let apiEndpoint = "";
+  
+    // Depending on whether it's login or sign-up, set the correct endpoint
+    if (type === "signup") {
+      apiEndpoint = "http://localhost:5000/api/signup"; // Use the correct backend port
+    } else if (type === "login") {
+      apiEndpoint = "http://localhost:5000/api/login"; // Use the correct backend port
+    }
+  
+    // Make the API call
+    fetch(apiEndpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData), // Send the form data as JSON
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          console.log("Success:", data.message);
+          alert(data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  
+    // Reset the form fields after submission
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+    });
+  };
+  
+
   return (
     <StyledWrapper>
       <div className="wrapper">
@@ -13,43 +68,64 @@ const Form = () => {
             <div className="flip-card__inner">
               <div className="flip-card__front">
                 <div className="title">Log in</div>
-                <form className="flip-card__form" action="">
+                <form
+                  className="flip-card__form"
+                  onSubmit={(e) => handleSubmit(e, "login")}
+                >
                   <input
                     className="flip-card__input"
                     name="email"
                     placeholder="Email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                   />
                   <input
                     className="flip-card__input"
                     name="password"
                     placeholder="Password"
                     type="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
                   />
-                  <button className="flip-card__btn">Let`s go!</button>
+                  <button className="flip-card__btn" type="submit">
+                    Let`s go!
+                  </button>
                 </form>
               </div>
               <div className="flip-card__back">
                 <div className="title">Sign up</div>
-                <form className="flip-card__form" action="">
+                <form
+                  className="flip-card__form"
+                  onSubmit={(e) => handleSubmit(e, "signup")}
+                >
                   <input
                     className="flip-card__input"
+                    name="name"
                     placeholder="Name"
-                    type="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleInputChange}
                   />
                   <input
                     className="flip-card__input"
                     name="email"
                     placeholder="Email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                   />
                   <input
                     className="flip-card__input"
                     name="password"
                     placeholder="Password"
                     type="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
                   />
-                  <button className="flip-card__btn">Confirm!</button>
+                  <button className="flip-card__btn" type="submit">
+                    Confirm!
+                  </button>
                 </form>
               </div>
             </div>

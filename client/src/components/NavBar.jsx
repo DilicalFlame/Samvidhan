@@ -19,11 +19,11 @@ function NavBar() {
             <Nav.Link href="/">Home</Nav.Link>
             <NavDropdown title="Learn" id="basic-nav-dropdown">
               <NavDropdown.Item href="/preamble">Quick Start</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Beginner</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">Intermediate</NavDropdown.Item>
+              <NavDropdown.Item href="/preamble">Beginner</NavDropdown.Item>
+              <NavDropdown.Item href="/preamble">Intermediate</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Advanced</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">Advocate</NavDropdown.Item>
+              <NavDropdown.Item href="/preamble">Advanced</NavDropdown.Item>
+              <NavDropdown.Item href="/preamble">Advocate</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Browse" id="basic-nav-dropdown">
               <NavDropdown.Item href="/word">Word Game</NavDropdown.Item>

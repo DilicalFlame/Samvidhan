@@ -5,6 +5,8 @@ import PageNotAvailable from './pages/PageNotAvailable'
 import LandingPage from './pages/LandingPage'
 import AboutPage from './pages/AboutPage'
 import Login from './components/Login1'
+import { WordGame } from './pages/WordGame'
+import Preamble from './pages/Preamble'
 
 function App() {
   return (
@@ -16,7 +18,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path='/spin' element={<MySpinWheel />} /> */}
+          <Route path='/word' element={<WordGame />} />
+          <Route path='/preamble' element={<Preamble />} />
           
         </Routes>
       </BrowserRouter>
